@@ -1,0 +1,364 @@
+/* 
+  Web desarrollada por Carlos Marqués Muñoz
+  Julio 2025
+  contacto: marquesbasso@gmail.com 
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+
+:root {
+  --font-family: "Lato", sans-serif;
+  --background-color: #ffffff;
+  --text-color: #333333;
+  --accent-color: #000000;
+  --link-color: #000000;
+  --link-hover: #888888;
+  --section-spacing: 3rem;
+  --gallery-gap: 2rem;
+  --transition: all 0.4s ease-in-out;
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  body.show-timeline #timeline-indicator {
+    display: block;
+  }
+  #timeline-indicator {
+    display: none;
+  }
+
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: var(--background-color);
+    height: 40px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.75rem;
+  }
+
+  .menu a {
+    text-decoration: none;
+    color: var(--link-color);
+    font-weight: 200;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+
+  .menu a:hover {
+    color: var(--link-hover);
+  }
+
+  .hero {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    margin-top: 40px;
+    margin-bottom: 150px;
+  }
+
+  .hero img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-overlay h2 {
+    font-size: 3rem;
+    color: white;
+    font-weight: 200;
+    letter-spacing: 0.6em;
+    margin: 0;
+  }
+
+  .portfolio-label h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 0.4em;
+    margin: 100px 0;
+  }
+
+  .timeline-indicator {
+    position: fixed;
+    top: 50%;
+    left: 1rem;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #333;
+    letter-spacing: 0.2em;
+    z-index: 900;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+  }
+
+  .spacer {
+    flex-basis: 100%;
+    height: 0;
+    width: 100%;
+    grid-column: 1 / -1;
+  }
+
+  .grid {
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--gallery-gap);
+    padding: 0 1rem;
+  }
+
+  .grid .year-label {
+    grid-column: 1 / -1;
+    border-top: 2px solid #000;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 2rem 0 1rem;
+    margin-top: var(--section-spacing);
+    background-color: #fff;
+    display: none !important;
+  }
+
+  .grid .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    opacity: 1;
+    transform: scale(1);
+    transition: var(--transition);
+  }
+
+  .grid .item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #eee;
+  }
+
+  .grid .caption {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #666;
+  }
+
+  .year-group {
+    display: contents;
+  }
+
+  .year-label {
+    margin-bottom: 1rem;
+  }
+
+  .lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .lightbox.active {
+    display: flex;
+  }
+
+  footer {
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #999;
+    border-top: 1px solid #eee;
+    margin-top: var(--section-spacing);
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
+  footer .social-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+    line-height: 0;
+  }
+
+  footer .social-icon svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+  }
+
+  footer .social-icon:hover svg {
+    transform: scale(1.15);
+    fill: var(--accent-color);
+  }
+
+  .content-section {
+    width: 80%;
+
+    max-width: none;
+    margin: 140px auto 4rem;
+    text-align: center;
+    font-family: var(--font-family);
+    text-transform: uppercase;
+  }
+
+  .content-section h2 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    margin-bottom: 2rem;
+  }
+
+  .content-section h3 {
+    scroll-margin-top: 60px;
+  }
+
+  .content-section p {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+  }
+
+  .content-section a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: 400;
+  }
+
+  .cv-image {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 2rem;
+    border: 1px solid #ccc;
+  }
+
+  @media (width < 1025px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (1680px <= width) {
+    header {
+      height: 50px;
+    }
+  }
+
+  @media (width < 600px) {
+    .hero {
+      margin-bottom: 3rem; /* antes 150px */
+    }
+
+    .portfolio-label h2 {
+      margin: 3rem 0 1.5rem; /* antes 100px */
+    }
+
+    .content-section {
+      margin: 5rem auto 3rem;
+    }
+
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      justify-items: end;
+    }
+
+    .grid .item img {
+      width: 100%;
+      height: auto;
+    }
+
+    .hero-overlay h2 {
+      font-size: 1.5rem;
+    }
+
+    .portfolio-label h2 {
+      font-size: 1.2rem;
+    }
+
+    #timeline-indicator {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+    left: 0.5rem;
+    border-radius: 2px;
+    line-height: 1.2;
+    letter-spacing: 0.1em; /* más compacto */
+    max-width: 60px; /* opcional, limita el ancho si hace falta */
+    text-align: center;
+  }
+  }
+
+  @media (600px <= width <= 682px) {
+    .hero-overlay h2 {
+      font-size: 2.3rem; 
+      letter-spacing: 0.4em; 
+    }
+  }
+
+  @media (width < 340px) {
+    .hero-overlay h2 {
+      font-size: 1.2rem;
+      letter-spacing: 0.3em;
+    }
+
+    .portfolio-label h2 {
+      font-size: 1.1rem;
+      letter-spacing: 0.25em;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+}

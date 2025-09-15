@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://simonzabell.es/sitemap.xml
