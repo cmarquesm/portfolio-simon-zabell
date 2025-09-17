@@ -1,10 +1,11 @@
 // =========================================
 // Web desarrollada por Carlos Marqués Muñoz
-// marquesbasso@gmail.com | Julio 2025
+// cmarques83.dev@gmail.com | Julio 2025
 // =========================================
-console.log('%cWeb desarrollada por Carlos Marqués – marquésbasso@gmail.com', 'color: gray; font-style: italic; font-size: 14px');
-
-
+console.log(
+  "%cWeb desarrollada por Carlos Marqués – marquésbasso@gmail.com",
+  "color: gray; font-style: italic; font-size: 14px"
+);
 
 document.addEventListener("DOMContentLoaded", () => {
   const grid = document.getElementById("grid");
@@ -44,17 +45,58 @@ document.addEventListener("DOMContentLoaded", () => {
         yearGroup.innerHTML += `<div class="year-label" id="year-${anio}" data-year="${anio}">${anio}</div><div class="spacer"></div>`;
 
         agrupadas[anio].forEach((obra) => {
+          const esVideo = obra.archivo.endsWith(".mp4");
+          const esYT = obra.archivo.startsWith("youtube/");
+
           const rutaImagen =
-            "img/" +
+            (esVideo ? "video/" : esYT ? "" : "img/") +
             obra.archivo.split("/").map(encodeURIComponent).join("/");
-          yearGroup.innerHTML += `
-          <div class="item" data-year="${anio}">
-            <img src="${rutaImagen}" alt="${obra.caption}" loading="lazy">
-            <p class="caption">${
-              obra.caption ? obra.caption + ". " + obra.anio : "&nbsp;"
-            }</p>
-          </div>`;
-        });
+
+          const claseExtra =
+            obra.archivo === "2018/18tahi(6).webp" ||
+            obra.archivo === "2024/24all (5).webp" ||
+            obra.archivo === "video15dib.mp4" || obra.archivo.startsWith("youtube/")
+              ? " full-span"
+              : "";
+
+          if (esVideo) {
+            yearGroup.innerHTML += `
+              <div class="item${claseExtra}" data-year="${anio}">
+                <video controls preload="metadata" width="100%">
+                  <source src="${rutaImagen}" type="video/mp4">
+                  Tu navegador no soporta HTML5 video.
+                </video>
+                <p class="caption">${
+                  obra.caption ? obra.caption + ". " + obra.anio : "&nbsp;"
+                }</p>
+              </div>`;
+          } else if (esYT) {
+            const ytID = obra.archivo.split("/")[1];
+            yearGroup.innerHTML += `
+              <div class="item${claseExtra}" data-year="${anio}">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/${ytID}"
+                  title="YouTube video player"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowfullscreen
+                ></iframe>
+                <p class="caption">${
+                  obra.caption ? obra.caption + ". " + obra.anio : "&nbsp;"
+                }</p>
+              </div>`;
+          } else {
+            yearGroup.innerHTML += `
+              <div class="item${claseExtra}" data-year="${anio}">
+                <img src="${rutaImagen}" alt="${obra.caption}" loading="lazy">
+                <p class="caption">${
+                  obra.caption ? obra.caption + ". " + obra.anio : "&nbsp;"
+                }</p>
+              </div>`;
+                }
+          });
 
         grid.appendChild(yearGroup);
       });
@@ -115,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (hero) heroObserver.observe(hero);
 
       const spacer = document.createElement("div");
-      spacer.style.height = "40vh"; 
+      spacer.style.height = "40vh";
       grid.appendChild(spacer);
     });
 });
