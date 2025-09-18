@@ -167,6 +167,7 @@
     height: auto;
     display: block;
     border: 1px solid #eee;
+    aspect-ratio: 4 / 3;
   }
 
   .grid .caption {
