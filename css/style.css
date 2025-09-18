@@ -453,4 +453,51 @@
   }
 }
 
+/* Ajustes para móviles */
+@media (width < 600px) {
+  /* Reducir espacio vertical entre items */
+  .grid .item.full-span {
+    margin: 80px 0; 
+  }
+
+  body.documental-page .grid {
+    width: 100%;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    
+  }
+
+  body.documental-page .grid .item.full-span {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  body.documental-page .grid .item.full-span iframe {
+    max-width: 100% !important;
+    width: 100%;
+  }
+
+  /* Ampliar videos */
+  .grid .item.full-span iframe,
+  .grid .item.full-span video {
+    max-width: 100%; /* ocupar todo el ancho disponible */
+  }
+}
+
+/* Ajuste extra para móviles muy pequeños */
+@media (width < 400px) {
+  .grid .item.full-span {
+    margin: 60px 0;
+  }
+
+  .grid .item.full-span iframe,
+  .grid .item.full-span video {
+    max-width: 100%;
+  }
+}
+
+
 }
