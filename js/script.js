@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         yearGroup.innerHTML += `<div class="year-label" id="year-${anio}" data-year="${anio}">${anio}</div><div class="spacer"></div>`;
 
+        let primeraImagenInsertada = false;
         agrupadas[anio].forEach((obra) => {
           const esVideo = obra.archivo.endsWith(".mp4");
           const esYT = obra.archivo.startsWith("youtube/");
@@ -55,7 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
           const claseExtra =
             obra.archivo === "2018/18tahi(6).webp" ||
             obra.archivo === "2024/24all (5).webp" ||
-            obra.archivo === "video15dib.mp4" || obra.archivo.startsWith("youtube/")
+            obra.archivo === "video15dib.mp4" ||
+            obra.archivo.startsWith("youtube/")
               ? " full-span"
               : "";
 
@@ -88,19 +90,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 }</p>
               </div>`;
           } else {
+            const item = document.createElement("div");
+            item.className = `item${claseExtra}`;
+            item.setAttribute("data-year", anio);
 
-            const isFirstImageGlobal = grid.querySelectorAll("img").length === 0;
-            const fetchAttr = isFirstImageGlobal ? 'fetchpriority="high"' : '';
-            
-            yearGroup.innerHTML += `
-              <div class="item${claseExtra}" data-year="${anio}">
-                <img src="${rutaImagen}" alt="${obra.caption}" loading="lazy">
-                <p class="caption">${
-                  obra.caption ? obra.caption + ". " + obra.anio : "&nbsp;"
-                }</p>
-              </div>`;
-                }
-          });
+            const img = document.createElement("img");
+            img.src = rutaImagen;
+            img.alt = obra.caption;
+            img.loading = "lazy";
+
+            if (!primeraImagenInsertada) {
+              img.setAttribute("fetchpriority", "high");
+              primeraImagenInsertada = true;
+            }
+
+            const p = document.createElement("p");
+            p.className = "caption";
+            p.textContent = obra.caption
+              ? `${obra.caption}. ${obra.anio}`
+              : "\u00A0";
+
+            item.appendChild(img);
+            item.appendChild(p);
+            yearGroup.appendChild(item);
+          }
+        });
 
         grid.appendChild(yearGroup);
       });
