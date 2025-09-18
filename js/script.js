@@ -88,6 +88,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 }</p>
               </div>`;
           } else {
+
+            const isFirstImageGlobal = grid.querySelectorAll("img").length === 0;
+            const fetchAttr = isFirstImageGlobal ? 'fetchpriority="high"' : '';
+            
             yearGroup.innerHTML += `
               <div class="item${claseExtra}" data-year="${anio}">
                 <img src="${rutaImagen}" alt="${obra.caption}" loading="lazy">
