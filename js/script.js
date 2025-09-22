@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
             obra.archivo === "2018/18tahi(6).webp" ||
             obra.archivo === "2024/24all (5).webp" ||
             obra.archivo === "video15dib.mp4" ||
+            obra.archivo === "radio3.mp4" ||
             obra.archivo.startsWith("youtube/")
               ? " full-span"
               : "";
