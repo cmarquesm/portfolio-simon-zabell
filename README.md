@@ -2,18 +2,19 @@
 
 Sitio web estático que presenta la obra artística de Simón Zabell, artista contemporáneo afincado en Granada.
 
-El proyecto incluye un grid dinámico con filtros por año (2000–2025), lightbox para ampliar imágenes, vídeos integrados, biografía, CV y formulario de contacto. Todo desarrollado con HTML, CSS y JavaScript puros.
+El proyecto incluye un grid dinámico con filtros por año (2000–2025), lightbox para ampliar imágenes, vídeos integrados, biografía, CV y página de enlace a video documental. Todo desarrollado con HTML, CSS y JavaScript puros "from the scratch".
 
-## 🖼️ Tecnologías utilizadas
+Tecnologías utilizadas
 
 - HTML5
 - CSS3 (Flexbox y Grid)
 - JavaScript (vanilla)
 - Google Fonts
+- CSV para recuperación de imágenes
 - Netlify (hosting y despliegue)
 - Git y GitHub (control de versiones)
 
-## ⚙️ Características principales
+Características principales
 
 - Diseño responsive y minimalista
 - Grid filtrable por años para navegar la obra
