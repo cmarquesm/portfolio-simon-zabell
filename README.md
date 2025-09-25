@@ -29,5 +29,9 @@ Cómo ver el sitio
 Puedes visitar el sitio desplegado en Netlify aquí:  
 [https://simonzabell.es]
 
+Autores
+Carlos Marqués: desarrollador [https://github.com/cmarquesm]
+Simón Zabell: creador artístico
+
 
 
